@@ -10,7 +10,20 @@ def postInfo():
     db = client['doutuiDb']
     jsonInfo = request.json
     doutuiCol = db.doutuiCol
-    doutuiCol.insert_one({"timestamps":jsonInfo['timestamps'],"count":jsonInfo['count']})
+    doutuiCol.insert_one({"timestamps":jsonInfo['timestamps'],
+                         "username":jsonInfo["username"],
+                         "count":jsonInfo['count']})
+    return "Successed"
+
+@app.route('/dt_data_sensor', methods = ['POST'])
+def postSensorInfo():
+    client = MongoClient()
+    db = client['doutuiDb']
+    jsonInfo = request.json
+    doutuiColSensorCol = db.doutuiSensorCol
+    doutuiColSensorCol.insert_one({"timestamps":jsonInfo['timestamps'],
+                         "username":jsonInfo["username"],
+                         "sensor":jsonInfo['count']})
     return "Successed"
 
 @app.route('/get_dt_data', methods=['GET'])
@@ -29,4 +42,4 @@ def getInfo():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80)
+    app.run(debug=True, port = 80)
