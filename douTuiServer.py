@@ -23,7 +23,7 @@ def postSensorInfo():
     doutuiColSensorCol = db.doutuiSensorCol
     doutuiColSensorCol.insert_one({"timestamps":jsonInfo['timestamps'],
                          "username":jsonInfo["username"],
-                         "sensor":jsonInfo['count']})
+                         "sensor":jsonInfo['sensor']})
     return "Successed"
 
 @app.route('/get_dt_data', methods=['GET'])
@@ -36,6 +36,9 @@ def getInfo():
     endTime = limits
     doutuiCol = db.doutuiCol
     cnt = 0
+    doutuiColSensorCol = db.doutuiSensorCol
+    for item in doutuiColSensorCol.find()
+        print item['sensor']
     for item in doutuiCol.find({'timestamps':{'$gt':startTime, '$lte':endTime}}):
         cnt = cnt + item['count']
     return str(cnt)
