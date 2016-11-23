@@ -1,5 +1,8 @@
 #coding=utf-8
-import sl4a
+try:
+    import sl4a
+except:
+    import fakesl4a as sl4a 
 import urllib.parse
 import urllib.request
 import time
