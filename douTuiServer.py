@@ -37,7 +37,7 @@ def getInfo():
     doutuiCol = db.doutuiCol
     cnt = 0
     doutuiColSensorCol = db.doutuiSensorCol
-    for item in doutuiColSensorCol.find()
+    for item in doutuiColSensorCol.find():
         print item['sensor']
     for item in doutuiCol.find({'timestamps':{'$gt':startTime, '$lte':endTime}}):
         cnt = cnt + item['count']
