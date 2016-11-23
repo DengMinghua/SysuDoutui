@@ -41,9 +41,9 @@ while 1:
 
 
     sdata = {
-            "timestamp":time.time(),
+            "timestamps":time.time(),
             "username": USER_NAME,
-            "data":sensors_data
+            "sensor":sensors_data
         }
 
     try:
