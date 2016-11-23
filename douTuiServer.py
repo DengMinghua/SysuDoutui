@@ -37,12 +37,10 @@ def getInfo():
     doutuiCol = db.doutuiCol
     cnt = 0
     doutuiColSensorCol = db.doutuiSensorCol
-    for item in doutuiColSensorCol.find():
-        print item['sensor']
     for item in doutuiCol.find({'timestamps':{'$gt':startTime, '$lte':endTime}}):
         cnt = cnt + item['count']
     return str(cnt)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 5000, host = '45.32.56.30')
+    app.run(debug=False, port = 5000, host = '45.32.56.30')
