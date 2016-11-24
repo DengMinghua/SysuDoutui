@@ -130,10 +130,34 @@ $(document).ready(function() {
   //   autoStart: false
   // });
 
+  let get_today_count = function() {
+    let midnight = new Date();
+    midnight.setHours(0,0,0,0);
+    $.ajax({
+      url: "/get_dt_data",
+      type: "GET",
+      dataType: "json",
+      contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+      cache: false,
+      data: {
+        timeLimits: parseInt((+ new Date()) / 1000),
+        timeInterval: parseInt((+ new Date() - midnight) / 1000)
+      },
+      success: function(data) {
+        // console.log(data);
+
+        now_num += data;
+        my_clock.face.factory.setValue(now_num);
+      }
+    });
+    last_click = + new Date();
+  }
+
   window.my_clock = $('.clock').FlipClock(9999, {
     clockFace: 'Counter'
   });
   my_clock.face.factory.setValue(now_num);
+  get_today_count();
 
   setInterval(function(){
     $(".reload").click();

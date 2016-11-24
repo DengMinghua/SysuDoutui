@@ -8,9 +8,10 @@ except:
 import requests
 import time
 import json
+import random
 
-#SERVER_ADDR = "http://45.32.56.30:5000/"
-SERVER_ADDR = "http://127.0.0.1:5000/"
+SERVER_ADDR = "http://45.32.56.30/"
+# SERVER_ADDR = "http://127.0.0.1:5000/"
 USER_NAME = "user1"
 INTERVAL_SECONDS = 1
 FAILED_SECONDS = 5
