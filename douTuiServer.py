@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import pymongo
 from pymongo import MongoClient
 
@@ -9,6 +9,7 @@ def postInfo():
     client = MongoClient()
     db = client['doutuiDb']
     jsonInfo = request.json
+    # print (jsonInfo)
     doutuiCol = db.doutuiCol
     doutuiCol.insert_one({"timestamps":jsonInfo['timestamps'],
                          "username":jsonInfo["username"],
@@ -26,12 +27,26 @@ def postSensorInfo():
                          "sensor":jsonInfo['sensor']})
     return "Successed"
 
+@app.route('/get_raw_data', methods=['GET'])
+def getRawData():
+    client = MongoClient()
+    db = client['doutuiDb']
+    number = int(request.args.get('n', default=1))
+    resultStr = ''
+    doutuiColSensorCol = db.doutuiSensorCol
+    for item in doutuiColSensorCol.find().limit(number):
+        resultStr += "==========<br>timestamps: %d<br>username: %s<br>sensors: %s<br><br>" % (item['timestamps'], item['username'], item['sensor'])
+        # resultStr = resultStr + 'timestamps: ' + item['timestamps'] + '\n' + 'username: ' +  \
+        # item['username'] + '\n' + 'sensor: ' + item['sensor'] + '\n\n'
+    return resultStr
+
 @app.route('/get_dt_data', methods=['GET'])
 def getInfo():
     client = MongoClient()
     db = client['doutuiDb']
     limits = int(request.args.get('timeLimits'))
     interval = int(request.args.get('timeInterval'))
+    # print(limits, interval)
     startTime = limits - interval
     endTime = limits
     doutuiCol = db.doutuiCol
@@ -41,6 +56,10 @@ def getInfo():
         cnt = cnt + item['count']
     return str(cnt)
 
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=False, port = 5000, host = '45.32.56.30')
+    app.run(debug=True)
+    # app.run(debug=False, port = 80, host = '45.32.56.30')

@@ -1,0 +1,106 @@
+* {
+    font-family:"Microsoft JhengHei", "Microsoft YaHei",Arial,Helvetica,sans-serif;
+}
+
+body {
+    background-color: #16a085;
+    margin: 0;
+}
+#today-data {
+    border: 3px solid white;
+    border-radius: 10px;
+    width: 600px;
+    height: auto;
+    min-height: 190px;
+    background-color: rgba(255, 255, 255, 0.65);
+    margin: 120px auto 0 auto;
+}
+
+#history-data {
+    border: 3px solid white;
+    border-radius: 10px;
+    width: 900px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.65);
+
+    margin: 50px auto 0 auto;
+    padding: 0 1vw;
+}
+
+#title {
+    border: 3px solid white;
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.65);
+    margin: 50px auto 0 auto;
+    text-align: center;
+}
+
+#title > nav {
+    display: inline-block;
+}
+
+span.title {
+    color: black;
+    font-size: 2em;
+}
+
+#today-data h1,
+#history-data h1 {
+    height: 30px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: 300;
+    margin: 20px 0;
+}
+
+.history.chart {
+    height: calc(30vh - 30px - 40px);
+}
+
+.clock {
+    height: calc(20vh - 30px - 40px);
+    width: calc(4 * 70px);
+    margin: 0 auto;
+}
+
+.background {
+    height: 100vmin;
+    width: 100vmin;
+    
+    position: fixed;
+    margin: 0 auto;
+}
+
+/* link */
+.reload {
+    position: relative;
+    text-align: center;
+    right: 0;
+    left: 300px;
+    top: 10vh;
+    width: 800px;
+    margin: 0 auto;
+   
+}
+.convertLB {
+    position: relative;
+    text-align: center;
+    right: 0;
+    left: 300px;
+    top: 10vh;
+    width: 800px;
+    margin: 0 auto;
+   
+}
+
+#buttons > nav {
+    display: inline;
+    position: relative;
+    text-align: center;
+    right: 0;
+    top: 10vh;
+    width: 800px;
+    margin: 0 auto;
+}
