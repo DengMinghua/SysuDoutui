@@ -10,10 +10,10 @@ import time
 import json
 import random
 
-SERVER_ADDR = "http://45.32.56.30/"
-# SERVER_ADDR = "http://127.0.0.1:5000/"
+# SERVER_ADDR = "http://45.32.56.30/"
+SERVER_ADDR = "http://127.0.0.1:5000/"
 USER_NAME = "user1"
-INTERVAL_SECONDS = 1
+INTERVAL_SECONDS = 3
 FAILED_SECONDS = 5
 
 droid = sl4a.Android()
@@ -85,7 +85,8 @@ while 1:
     dtdata = {
             "timestamps":time.time(),
             "username": USER_NAME,
-            "count": doutuiCount
+            # "count": doutuiCount
+            "count": random.randint(0,10)
             }
 
     #try:
