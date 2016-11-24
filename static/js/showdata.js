@@ -67,6 +67,8 @@ $(document).ready(function() {
   };
   //let month=["January","February","March","April","MAy","June","July","August","September","October","November","December"];
 
+  let midnight = new Date();
+    midnight.setHours(0,0,0,0);
   let get_dt_data = function() {
     $.ajax({
       url: "/get_dt_data",
@@ -76,11 +78,13 @@ $(document).ready(function() {
       cache: false,
       data: {
         timeLimits: parseInt((+ new Date()) / 1000),
-        timeInterval: parseInt((+ new Date() - last_click) / 1000)
+        timeInterval: parseInt((+ new Date() - midnight) / 1000)
       },
       success: function(data) {
         // console.log(data);
-        his_data.push(data);
+        delta = data - now_num;
+        his_data.push(delta);
+
         his_data.shift();
 
         // myBarChart.data.datasets[0].data = his_data;
@@ -90,7 +94,7 @@ $(document).ready(function() {
         myBarChart.update(true);
         myLineChart.update(true);
 
-        now_num += data;
+        now_num = data;
         my_clock.face.factory.setValue(now_num);
       }
     });
@@ -131,8 +135,7 @@ $(document).ready(function() {
   // });
 
   let get_today_count = function() {
-    let midnight = new Date();
-    midnight.setHours(0,0,0,0);
+    
     $.ajax({
       url: "/get_dt_data",
       type: "GET",
