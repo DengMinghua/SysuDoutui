@@ -90,6 +90,8 @@ while 1:
             "count": doutuiNewCount
             }
 
+    doutuiNewCount = 0
+
     #try:
     SendData("dt_data_sensor", sdata)
     SendData("dt_data_entry", dtdata)
