@@ -156,7 +156,7 @@ $(document).ready(function() {
     last_click = + new Date();
   }
 
-  window.my_clock = $('.clock').FlipClock(9999, {
+  window.my_clock = $('.clock').FlipClock(999999, {
     clockFace: 'Counter'
   });
   my_clock.face.factory.setValue(now_num);

@@ -34,7 +34,7 @@ def getRawData():
     number = int(request.args.get('n', default=1))
     resultStr = ''
     doutuiColSensorCol = db.doutuiSensorCol
-    for item in doutuiColSensorCol.find().limit(number):
+    for item in doutuiColSensorCol.find().sort('timestamps', -1).limit(number):
         resultStr += "==========<br>timestamps: %d<br>username: %s<br>sensors: %s<br><br>" % (item['timestamps'], item['username'], item['sensor'])
         # resultStr = resultStr + 'timestamps: ' + item['timestamps'] + '\n' + 'username: ' +  \
         # item['username'] + '\n' + 'sensor: ' + item['sensor'] + '\n\n'
