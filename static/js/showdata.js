@@ -75,8 +75,8 @@ $(document).ready(function() {
       contentType: 'application/x-www-form-urlencoded; charset=utf-8',
       cache: false,
       data: {
-        timeLimits: + new Date(),
-        timeInterval: 5 * 1000
+        timeLimits: parseInt((+ new Date()) / 1000),
+        timeInterval: parseInt((+ new Date() - last_click) / 1000)
       },
       success: function(data) {
         // console.log(data);
@@ -94,6 +94,7 @@ $(document).ready(function() {
         my_clock.face.factory.setValue(now_num);
       }
     });
+    last_click = + new Date();
   }
 
   let barpar = {
@@ -114,6 +115,7 @@ $(document).ready(function() {
   // 当前抖腿数量
   // let now_num = parseInt(Math.random() * 100);
   let now_num = 0;
+  let last_click = + new Date();
   $('.reload').click(function() {
     get_dt_data();
   });

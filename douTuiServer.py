@@ -9,6 +9,7 @@ def postInfo():
     client = MongoClient()
     db = client['doutuiDb']
     jsonInfo = request.json
+    # print (jsonInfo)
     doutuiCol = db.doutuiCol
     doutuiCol.insert_one({"timestamps":jsonInfo['timestamps'],
                          "username":jsonInfo["username"],
@@ -32,7 +33,7 @@ def getInfo():
     db = client['doutuiDb']
     limits = int(request.args.get('timeLimits'))
     interval = int(request.args.get('timeInterval'))
-    print(limits, interval)
+    # print(limits, interval)
     startTime = limits - interval
     endTime = limits
     doutuiCol = db.doutuiCol
@@ -40,7 +41,7 @@ def getInfo():
     doutuiColSensorCol = db.doutuiSensorCol
     for item in doutuiCol.find({'timestamps':{'$gt':startTime, '$lte':endTime}}):
         cnt = cnt + item['count']
-    return jsonify(cnt)
+    return str(cnt)
 
 @app.route('/', methods=['GET'])
 def index():

@@ -3,8 +3,8 @@ try:
     import sl4a
 except:
     import fakesl4a as sl4a 
-import urllib.parse
-import urllib.request
+# import urllib.parse
+# import urllib.request
 import requests
 import time
 import json
@@ -27,7 +27,7 @@ doutuLastTime = time.time()
 def DouTui():
     global doutuLastTime, doutuiCount
     doutuiCount += 1
-    print ("DouTui Count: %d (+1)" % doutuiCount)
+    # print ("DouTui Count: %d (+1)" % doutuiCount)
     doutuLastTime = time.time()
 
 def SendData(name, data):
